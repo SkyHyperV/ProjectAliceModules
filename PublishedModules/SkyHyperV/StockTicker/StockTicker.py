@@ -24,21 +24,18 @@ class StockTicker(Module):
 		self._apiKey = self.getConfig('apiKey')
 
 
-	'''
 	@staticmethod
 	def _extractTicker(session: DialogSession) -> str:
 		if 'Letters' in session.slots:
 			return ''.join([slot.value['value'] for slot in session.slotsAsObjects['Letters']])
 		return
-	'''
 
 
 	def _searchTicker(self, session: DialogSession, question: str):
-		#ticker = self._extractTicker(session)
+		ticker = self._extractTicker(session)
 		self.continueDialog(
 			sessionId=session.sessionId,
-			#text=self.randomTalk(text=question, replace=[ticker]),
-			text=self.randomTalk(text=question),
+			text=self.randomTalk(text=question, replace=[ticker]),
 			intentFilter=[Intent('StockTicker'),Intent('SpellWord')],
 			currentDialogState='searchTicker'
 		)

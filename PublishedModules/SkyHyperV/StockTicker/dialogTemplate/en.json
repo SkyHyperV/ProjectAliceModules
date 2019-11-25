@@ -20,7 +20,7 @@
             ],
             "slots": [
                 {
-                    "name": Ticker",
+                    "name": "Ticker",
                     "description": null,
                     "required": false,
                     "type": "SpellWord",

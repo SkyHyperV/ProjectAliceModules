@@ -24,19 +24,22 @@ class StockTicker(Module):
 		self._apiKey = self.getConfig('apiKey')
 
 
+	'''
 	@staticmethod
 	def _extractTicker(session: DialogSession) -> str:
 		if 'Letters' in session.slots:
 			return ''.join([slot.value['value'] for slot in session.slotsAsObjects['Letters']])
 		return
+	'''
 
 
 	def _searchTicker(self, session: DialogSession, question: str):
-		ticker = self._extractTicker(session)
+		#ticker = self._extractTicker(session)
 		self.continueDialog(
 			sessionId=session.sessionId,
-			text=self.randomTalk(text=question, replace=[ticker]),
-			intentFilter=[Intent('SpellWord')],
+			#text=self.randomTalk(text=question, replace=[ticker]),
+			text=self.randomTalk(text=question),
+			intentFilter=[Intent('StockTicker'),Intent('SpellWord')],
 			currentDialogState='searchTicker'
 		)
 
@@ -54,9 +57,8 @@ class StockTicker(Module):
 
 		self._searchTicker(session, 'searchTicker')
 
-		self.endDialog(session.sessionId, text=self.randomTalk('endDialog'))
-
-		'''url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker}&apikey={self._apiKey}'
+		'''
+		url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker}&apikey={self._apiKey}'
 
 		response = requests.get(url=url)
 		response.raise_for_status()

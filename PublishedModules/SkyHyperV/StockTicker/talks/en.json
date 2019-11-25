@@ -13,9 +13,8 @@
 	],
 	"searchTicker": {
 		"default": [
-			"Can you spell out the ticker you want me to search?",
-			"Of course I can, can you spell the ticker?",
-			"Yes I can do that, please spell the ticker"
+			"Can you spell out the stock symbol you want me to search?",
+			"Sorry, I didn't understand the stock symbol, can you spell it for me?"
 		]
 	}
 }

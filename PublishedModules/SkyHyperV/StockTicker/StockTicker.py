@@ -33,12 +33,16 @@ class StockTicker(Module):
 
 	def _searchTicker(self, session: DialogSession, question: str):
 		ticker = self._extractTicker(session)
-		self.continueDialog(
-			sessionId=session.sessionId,
-			text=self.randomTalk(text=question, replace=[ticker]),
-			intentFilter=[Intent('StockTicker'),Intent('SpellWord')],
-			currentDialogState='searchTicker'
-		)
+		self.logInfo(f'TICKER: {ticker}')
+
+		if not ticker:
+			self.logInfo(f'TICKER in NOT TICKER: {ticker}')
+			self.continueDialog(
+				sessionId=session.sessionId,
+				text=self.randomTalk(text=question),
+				intentFilter=[Intent('SpellWord')],
+				currentDialogState='searchTicker'
+			)
 
 		return ticker
 

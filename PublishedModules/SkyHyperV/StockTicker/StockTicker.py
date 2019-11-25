@@ -3,6 +3,7 @@ from core.dialog.model.DialogSession import DialogSession
 from core.util.Decorators import IntentHandler, AnyExcept, Online
 from core.base.model.Intent import Intent
 
+import json
 import requests
 from requests.exceptions import RequestException
 
@@ -33,10 +34,8 @@ class StockTicker(Module):
 
 	def _searchTicker(self, session: DialogSession, question: str):
 		ticker = self._extractTicker(session)
-		self.logInfo(f'TICKER: {ticker}')
 
 		if not ticker:
-			self.logInfo(f'TICKER in NOT TICKER: {ticker}')
 			self.continueDialog(
 				sessionId=session.sessionId,
 				text=self.randomTalk(text=question),
@@ -65,8 +64,6 @@ class StockTicker(Module):
 		response = requests.get(url=url)
 		response.raise_for_status()
 		data = response.json()
-		self.logInfo(f'DATA: {data}')
-
-		price = data[f'08. previous close']
+		price = data[f'Global Quote'][f'08. previous close']
 
 		self.endDialog(session.sessionId, text=self.randomTalk('answer').format(price))

@@ -1,0 +1,15 @@
+{
+	"name": "StockTicker",
+	"version": "0.0.1",
+	"author": "SkyHyperv",
+	"maintainers": [],
+	"desc": "Get variety of stock information",
+	"aliceMinVersion": "1.0.0-a3",
+	"pipRequirements": [],
+	"systemRequirements": [],
+	"conditions": {
+		"lang": [
+			"en"
+		]
+	}
+}

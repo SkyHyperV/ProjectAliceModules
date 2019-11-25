@@ -1,0 +1,11 @@
+{
+	"noApiKey": [
+		"I can not do this without an A P I key. Please add it to my config"
+	],
+	"answer": [
+		"Current price is {}"
+	],
+	"noServer": [
+		"I cannot find the information on that stock currently. Please try again later."
+	]
+}

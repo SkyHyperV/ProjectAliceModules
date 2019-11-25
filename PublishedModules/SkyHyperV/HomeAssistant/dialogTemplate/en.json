@@ -1,0 +1,79 @@
+{
+    "module": "HomeAssistant",
+    "icon": "time",
+    "description": "Home Assistant integration",
+    "slotTypes": [],
+    "intents": [
+        {
+            "name": "AlarmOn",
+            "description": "Activate home alarm",
+            "enabledByDefault": true,
+            "utterances": [
+                "activate alarm",
+                "please activate alarm",
+                "turn on alarm",
+                "enable alarm"
+            ],
+            "slots": []
+        },
+        {
+            "name": "AlarmOff",
+            "description": "Deactivate home alarm",
+            "enabledByDefault": true,
+            "utterances": [
+                "deactivate alarm",
+                "please deactivate alarm",
+                "turn off alarm",
+                "disable alarm"
+            ],
+            "slots": []
+        },
+        {
+            "name": "HomeClimate",
+            "description": "Current climate in the home",
+            "enabledByDefault": true,
+            "utterances": [
+                "home weather",
+                "current home temperature",
+                "what does it feel like in the home",
+                "what does it feel like in the house",
+                "hows the weather in here"
+            ],
+            "slots": []
+        },
+        {
+            "name": "OutdoorClimate",
+            "description": "Current climate outside",
+            "enabledByDefault": true,
+            "utterances": [
+                "outdoor weather",
+                "current outdoor temperature",
+                "what does it feel like outside",
+                "what does it feel like outdoors",
+                "hows the weather out there"
+            ],
+            "slots": []
+        },
+        {
+            "name": "WeatherSummary",
+            "description": "Short weather summary",
+            "enabledByDefault": true,
+            "utterances": [
+                "weather summary"
+            ],
+            "slots": []
+        },
+        {
+            "name": "ClimateClosestStorm",
+            "description": "How far the closest storm is",
+            "enabledByDefault": true,
+            "utterances": [
+                "what is the closest storm to us",
+                "any storms in the area?",
+                "are we expecting rain anytime soon?",
+                "is there rain nearby?"
+            ],
+            "slots": []
+        }
+    ]
+}

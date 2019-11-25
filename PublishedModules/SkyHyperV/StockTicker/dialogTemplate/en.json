@@ -1,0 +1,29 @@
+{
+    "module": "StockTicker",
+    "icon": "star",
+    "description": "Get variety of stock information",
+    "slotTypes": [],
+    "intents": [
+        {
+            "name": "StockTicker",
+            "description": "Get current stock price",
+            "enabledByDefault": true,
+            "utterances": [
+                "what's the current price of ticker {MSFT:=>Ticker}",
+                "what is the current price of ticker {MSFT:=>Ticker}",
+                "what's the current price of {MSFT:=>Ticker}",
+                "what is the current price of {MSFT:=>Ticker}",
+                "what is {MSFT:=>Ticker} trading at"
+            ],
+            "slots": [
+                {
+                    "name": "Ticker",
+                    "description": null,
+                    "required": false,
+                    "type": "RandomWords",
+                    "missingQuestion": ""
+                }
+            ]
+        }
+    ]
+}

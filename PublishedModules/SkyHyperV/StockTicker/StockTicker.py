@@ -40,6 +40,8 @@ class StockTicker(Module):
 			currentDialogState='searchTicker'
 		)
 
+		return ticker
+
 
 	@IntentHandler('StockTicker')
 	@IntentHandler('SpellWord', isProtected=True, requiredState='searchTicker')
@@ -52,9 +54,8 @@ class StockTicker(Module):
 			self.endDialog(session.sessionId, text=self.randomTalk('noApiKey'))
 			return
 
-		self._searchTicker(session, 'searchTicker')
+		ticker = self._searchTicker(session, 'searchTicker')
 
-		'''
 		url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker}&apikey={self._apiKey}'
 
 		response = requests.get(url=url)
@@ -63,7 +64,5 @@ class StockTicker(Module):
 		self.logInfo(f'DATA: {data}')
 
 		price = data[f'08. previous close']
-		
 
 		self.endDialog(session.sessionId, text=self.randomTalk('answer').format(price))
-		'''

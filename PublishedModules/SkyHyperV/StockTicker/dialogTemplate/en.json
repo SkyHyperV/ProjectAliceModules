@@ -13,14 +13,17 @@
                 "what is the current price of ticker {MSFT:=>Ticker}",
                 "what's the current price of {MSFT:=>Ticker}",
                 "what is the current price of {MSFT:=>Ticker}",
-                "what is {MSFT:=>Ticker} trading at"
+                "what is {MSFT:=>Ticker} trading at",
+                "I need stock information",
+                "Can you give me some information on a stock?",
+                "I would like some information on a stock"
             ],
             "slots": [
                 {
                     "name": "Ticker",
                     "description": null,
                     "required": false,
-                    "type": "RandomWords",
+                    "type": "SpellWord",
                     "missingQuestion": ""
                 }
             ]

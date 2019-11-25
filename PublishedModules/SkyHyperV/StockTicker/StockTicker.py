@@ -23,7 +23,26 @@ class StockTicker(Module):
 		super().__init__()
 		self._apiKey = self.getConfig('apiKey')
 
+
+	@staticmethod
+	def _extractTicker(session: DialogSession) -> str:
+		if 'Letters' in session.slots:
+			return ''.join([slot.value['value'] for slot in session.slotsAsObjects['Letters']])
+		return
+
+
+	def _searchTicker(self, session: DialogSession, question: str):
+		ticker = self._extractTicker(session)
+		self.continueDialog(
+			sessionId=session.sessionId,
+			text=self.randomTalk(text=question, replace=[ticker]),
+			intentFilter=[Intent('SpellWord')],
+			currentDialogState='searchTicker'
+		)
+
+
 	@IntentHandler('StockTicker')
+	@IntentHandler('SpellWord', isProtected=True, requiredState='searchTicker')
 	@AnyExcept(exceptions=(RequestException, KeyError), text='noServer', printStack=True)
 	@Online
 	def StockTickerIntent(self, session: DialogSession, **_kwargs):
@@ -32,6 +51,10 @@ class StockTicker(Module):
 			self.logWarning(msg="Please request an API key from https://www.alphavantage.co/support/#api-key and add it to the module config.json")
 			self.endDialog(session.sessionId, text=self.randomTalk('noApiKey'))
 			return
+
+		self._searchTicker(session, 'searchTicker')
+
+		self.endDialog(session.sessionId, text=self.randomTalk('endDialog'))
 
 		'''url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker}&apikey={self._apiKey}'
 

@@ -2,7 +2,128 @@
     "module": "HomeAssistant",
     "icon": "time",
     "description": "Home Assistant integration",
-    "slotTypes": [],
+    "slotTypes": [
+        {
+            "name": "RokuApplication",
+			"matchingStrictness": null,
+			"automaticallyExtensible": false,
+			"useSynonyms": false,
+			"values": [
+				{
+					"value": "netflix",
+					"synonyms": []
+				},
+                {
+					"value": "amazon prime",
+					"synonyms": []
+				},
+                {
+					"value": "hulu",
+					"synonyms": []
+				},
+                {
+					"value": "sling",
+					"synonyms": []
+				}
+            ]
+        },
+        {
+            "name": "KeyPress",
+			"matchingStrictness": null,
+			"automaticallyExtensible": false,
+			"useSynonyms": true,
+			"values": [
+				{
+					"value": "back",
+					"synonyms": []
+				},
+                {
+					"value": "backspace",
+					"synonyms": []
+				},
+                {
+					"value": "channel_down",
+					"synonyms": []
+				},
+                {
+					"value": "channel_up",
+					"synonyms": []
+				},
+                {
+					"value": "down",
+					"synonyms": []
+				},
+                {
+					"value": "enter",
+					"synonyms": []
+				},
+                {
+					"value": "find_remote",
+					"synonyms": []
+				},
+                {
+					"value": "forward",
+					"synonyms": []
+				},
+                {
+					"value": "home",
+					"synonyms": []
+				},
+                {
+					"value": "info",
+					"synonyms": []
+				},
+                {
+					"value": "left",
+					"synonyms": []
+				},
+                {
+					"value": "play",
+					"synonyms": []
+				},
+                {
+					"value": "power",
+					"synonyms": [
+                        "turn off",
+                        "power off",
+                        "off",
+                        "turn on",
+                        "power on",
+                        "on"
+                    ]
+				},
+                {
+					"value": "right",
+					"synonyms": []
+				},
+                {
+					"value": "search",
+					"synonyms": []
+				},
+                {
+					"value": "select",
+					"synonyms": []
+				},
+                {
+					"value": "up",
+					"synonyms": []
+				},
+                {
+					"value": "volume_down",
+					"synonyms": []
+				},
+                {
+					"value": "volume_mute",
+					"synonyms": []
+				},
+                {
+					"value": "volume_up",
+					"synonyms": []
+				}
+            ]
+        }
+
+    ],
     "intents": [
         {
             "name": "AlarmOn",
@@ -48,6 +169,7 @@
             "utterances": [
                 "outdoor weather",
                 "current outdoor temperature",
+                "current outside temperature",
                 "what does it feel like outside",
                 "what does it feel like outdoors",
                 "hows the weather out there"
@@ -59,9 +181,41 @@
             "description": "Short weather summary",
             "enabledByDefault": true,
             "utterances": [
-                "weather summary"
+                "weather summary",
+                "what's the weather like today"
             ],
             "slots": []
+        },
+        {
+            "name": "WeatherHourlyDailySummary",
+            "description": "Short weather summary broken down for hourly and upcoming days",
+            "enabledByDefault": true,
+            "utterances": [
+                "weather summary by day",
+                "what is the upcoming weather for the week"
+            ],
+            "slots": []
+        },
+        {
+            "name": "SpecificWeather",
+            "description": "Specific weather for the user (e.g. for that hour or later in a few hours)",
+            "enabledByDefault": true,
+            "utterances": [
+                "what is the weather like in {5:=>Hours} hours",
+                "what is the weather going to be in {4:=>Hours} hours",
+                "can you tell me the weather in {3:=>Hours} hours",
+                "i'm leaving in {2:=>Hours} hours what will the weather be like then",
+                "i'm leaving in {1:=>Hours hour, what will the weather be"
+            ],
+            "slots": [
+                {
+                    "name": "Hours",
+                    "description": null,
+                    "required": true,
+                    "type": "snips/number",
+                    "missingQuestion": "In how many hours?"
+                }
+            ]
         },
         {
             "name": "ClimateClosestStorm",
@@ -74,6 +228,43 @@
                 "is there rain nearby?"
             ],
             "slots": []
+        },
+        {
+            "name": "RokuMedia",
+            "description": "Interact with Roku Media Player",
+            "enabledByDefault": true,
+            "utterances": [
+                "roku please press {play:=>Action}",
+                "roku press {home:=>Action}",
+                "roku hit {select:=>Action}",
+                "roku select {enter:=>Action}",
+                "roku {home:=>Action}",
+                "roku launch {netflix:=>RokuApp}",
+                "roku start {sling:=>RokuApp}",
+                "remote please press {play:=>Action}",
+                "remote press {back:=>Action}",
+                "remote hit {play:=>Action}",
+                "remote {home:=>Action}",
+                "remote launch {netflix:=>RokuApp}",
+                "remote start {hulu:=>RokuApp}"
+
+            ],
+            "slots": [
+                {
+                    "name": "Action",
+                    "description": null,
+                    "required": false,
+                    "type": "KeyPress",
+                    "missingQuestion": ""
+                },
+                {
+                    "name": "RokuApp",
+                    "description": null,
+                    "required": false,
+                    "type": "RokuApplication",
+                    "missingQuestion": ""
+                }
+            ]
         }
     ]
 }

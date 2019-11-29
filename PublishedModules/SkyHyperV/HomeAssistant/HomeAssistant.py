@@ -13,7 +13,6 @@ class HomeAssistant(Module):
 	def haIntentEater(self, session: DialogSession, **_kwargs):
 		self.endSession(session.sessionId)
 
-
 	@IntentHandler('AlarmOff')
 	def haIntentEater(self, session: DialogSession, **_kwargs):
 		self.endSession(session.sessionId)
@@ -30,6 +29,18 @@ class HomeAssistant(Module):
 	def haIntentEater(self, session: DialogSession, **_kwargs):
 		self.endSession(session.sessionId)
 
+	@IntentHandler('WeatherHourlyDailySummary')
+	def haIntentEater(self, session: DialogSession, **_kwargs):
+		self.endSession(session.sessionId)
+
+	@IntentHandler('SpecificWeather')
+	def haIntentEater(self, session: DialogSession, **_kwargs):
+		self.endSession(session.sessionId)
+
 	@IntentHandler('ClimateClosestStorm')
+	def haIntentEater(self, session: DialogSession, **_kwargs):
+		self.endSession(session.sessionId)
+
+	@IntentHandler('RokuMedia')
 	def haIntentEater(self, session: DialogSession, **_kwargs):
 		self.endSession(session.sessionId)

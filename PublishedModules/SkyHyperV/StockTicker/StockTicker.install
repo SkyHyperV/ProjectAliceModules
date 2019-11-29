@@ -1,7 +1,7 @@
 {
 	"name": "StockTicker",
 	"version": "0.0.1",
-	"author": "SkyHyperv",
+	"author": "SkyHyperV",
 	"maintainers": [],
 	"desc": "Get variety of stock information",
 	"aliceMinVersion": "1.0.0-a3",

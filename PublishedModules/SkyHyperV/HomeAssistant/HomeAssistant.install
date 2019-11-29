@@ -1,7 +1,7 @@
 {
 	"name": "HomeAssistant",
 	"version": "0.0.1",
-	"author": "SkyHyperv",
+	"author": "SkyHyperV",
 	"maintainers": [],
 	"desc": "Home Assistant integration",
 	"aliceMinVersion": "1.0.0-a3",

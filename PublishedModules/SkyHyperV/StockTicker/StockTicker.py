@@ -3,21 +3,18 @@ from core.dialog.model.DialogSession import DialogSession
 from core.util.Decorators import IntentHandler, AnyExcept, Online
 from core.base.model.Intent import Intent
 
-import json
 import requests
 from requests.exceptions import RequestException
 
+'''
+TODO:
+- output price in user's native/base currency
+'''
+
 class StockTicker(Module):
 	"""
-	Author: SkyHyperv
+	Author: SkyHyperV
 	Description: Get variety of stock information
-
-	Dialog:
-	- User asks Alice to get some stock information
-	- Alice responds: "Can you spell the ticker?"
-	- User responds: "M S F T"
-	- Alice pulls info and provides to the user
-
 	"""
 
 	def __init__(self):
@@ -59,11 +56,14 @@ class StockTicker(Module):
 
 		ticker = self._searchTicker(session, 'searchTicker')
 
-		url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker}&apikey={self._apiKey}'
+		if not ticker:
+			self.endDialog(session.sessionId, text=self.randomTalk('noMatch'))
+		else:
+			url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker}&apikey={self._apiKey}'
 
-		response = requests.get(url=url)
-		response.raise_for_status()
-		data = response.json()
-		price = data[f'Global Quote'][f'08. previous close']
+			response = requests.get(url=url)
+			response.raise_for_status()
+			data = response.json()
+			price = float(data[f'Global Quote'][f'08. previous close'])
 
-		self.endDialog(session.sessionId, text=self.randomTalk('answer').format(price))
+			self.endDialog(session.sessionId, text=self.randomTalk('answer').format(f'{price:4.2f}'))

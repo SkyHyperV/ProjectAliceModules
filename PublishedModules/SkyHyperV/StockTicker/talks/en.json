@@ -8,10 +8,10 @@
 		]
 	},
 	"noApiKey": [
-		"I can not do this without an A P I key. Please add it to my config"
+		"I can not do this without an A P I key. Please visit Alpha Vantage to get your free A P I key then add it to my config"
 	],
 	"answer": [
-		"Current price of {} is {}"
+		"{} is currently trading at {} dollars and {} cents"
 	],
 	"searchTicker": {
 		"default": [

@@ -73,5 +73,8 @@ class StockTicker(Module):
 			response.raise_for_status()
 			data = response.json()
 			price = float(data[f'Global Quote'][f'08. previous close'])
+			price = str(f'{price:4.2f}')
+			dollars = int(price.split('.')[0])
+			cents = int(price.split('.')[1])
 
-			self.endDialog(session.sessionId, text=self.randomTalk('answer').format(name,f'{price:4.2f}'))
+			self.endDialog(session.sessionId, text=self.randomTalk('answer').format(name,dollars,cents))

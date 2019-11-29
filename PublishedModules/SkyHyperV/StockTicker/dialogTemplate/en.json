@@ -13,7 +13,8 @@
                 "what is the current price of ticker {M:=>Letters} {S:=>Letters} {F:=>Letters} {T:=>Letters}",
                 "what's the current price of {A:=>Letters} {A:=>Letters} {P:=>Letters} {L:=>Letters}",
                 "what is the current price of {T:=>Letters} {S:=>Letters} {L:=>Letters} {A:=>Letters}",
-                "what is {M:=>Letters} {S:=>Letters} {F:=>Letters} {T:=>Letters} trading at"
+                "what is {M:=>Letters} {S:=>Letters} {F:=>Letters} {T:=>Letters} trading at",
+                "stock price of {N:=>Letters} {F:=>Letters} {L:=>Letters} {X:=>Letters}"
             ],
             "slots": [
                 {

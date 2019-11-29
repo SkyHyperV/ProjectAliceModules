@@ -59,11 +59,19 @@ class StockTicker(Module):
 		if not ticker:
 			self.endDialog(session.sessionId, text=self.randomTalk('noMatch'))
 		else:
-			url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker}&apikey={self._apiKey}'
 
+			# get the name of the company first to make a better experience for the user
+			url = f'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords={ticker}&apikey={self._apiKey}'
+			response = requests.get(url=url)
+			response.raise_for_status()
+			data = response.json()
+			name = data[f'bestMatches'][0][f'2. name']
+
+			# get the stock price
+			url = f'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker}&apikey={self._apiKey}'
 			response = requests.get(url=url)
 			response.raise_for_status()
 			data = response.json()
 			price = float(data[f'Global Quote'][f'08. previous close'])
 
-			self.endDialog(session.sessionId, text=self.randomTalk('answer').format(f'{price:4.2f}'))
+			self.endDialog(session.sessionId, text=self.randomTalk('answer').format(name,f'{price:4.2f}'))

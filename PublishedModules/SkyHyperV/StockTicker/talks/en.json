@@ -11,7 +11,7 @@
 		"I can not do this without an A P I key. Please add it to my config"
 	],
 	"answer": [
-		"Current price is {}"
+		"Current price of {} is {}"
 	],
 	"searchTicker": {
 		"default": [

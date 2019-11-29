@@ -14,7 +14,7 @@ TODO:
 class StockTicker(Module):
 	"""
 	Author: SkyHyperV
-	Description: Get variety of stock information
+	Description: Get stock price
 	"""
 
 	def __init__(self):

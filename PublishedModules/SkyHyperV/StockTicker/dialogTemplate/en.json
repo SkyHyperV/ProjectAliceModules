@@ -1,7 +1,7 @@
 {
     "module": "StockTicker",
     "icon": "star",
-    "description": "Get stock information.\n\nUsage: Hello",
+    "description": "Stock price",
     "slotTypes": [],
     "intents": [
         {
